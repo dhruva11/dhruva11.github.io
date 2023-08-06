@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Python Temperature-Converter Code</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+</head>
+
+<body class="is-preload">
+    <div id="main">
+        <h1>Python Temperature-Converter Code</h1>
+        <p>Below is the code for the Python Temperature-Converter project.</p>
+        <p><strong>Note:</strong> Before running the code, make sure to install the required libraries by executing the
+            following commands in your command prompt (CMD) or PowerShell:</p>
+        <pre><code>
+        pip install tkinter
+        </code></pre>
+        <h2>temp.py</h2>
+        <pre><code>
+            import tkinter as tk
+            
+            def convert_temp():
+                temp_c = ent_temp_celsius.get()
+                temp_f = ent_temp_fahrenheit.get()
+                temp_k = ent_temp_kelvin.get()
+            
+                if temp_c:
+                    temp_c = float(temp_c)
+                    temp_f = (temp_c * 9 / 5) + 32
+                    temp_k = temp_c + 273.15
+                    ent_temp_fahrenheit.delete(0, tk.END)
+                    ent_temp_fahrenheit.insert(0, str(round(temp_f, 2)))
+                    ent_temp_kelvin.delete(0, tk.END)
+                    ent_temp_kelvin.insert(0, str(round(temp_k, 2)))
+
+                elif temp_f:
+                    temp_f = float(temp_f)
+                    temp_c = (temp_f - 32) * 5 / 9
+                    temp_k = (temp_f - 32) * 5 / 9 + 273.15
+                    ent_temp_celsius.delete(0, tk.END)
+                    ent_temp_celsius.insert(0, str(round(temp_c, 2)))
+                    ent_temp_kelvin.delete(0, tk.END)
+                    ent_temp_kelvin.insert(0, str(round(temp_k, 2)))
+
+                elif temp_k:
+                    temp_k = float(temp_k)
+                    temp_c = temp_k - 273.15
+                    temp_f = (temp_k - 273.15) * 9 / 5 + 32
+                    ent_temp_celsius.delete(0, tk.END)
+                    ent_temp_celsius.insert(0, str(round(temp_c, 2)))
+                    ent_temp_fahrenheit.delete(0, tk.END)
+                    ent_temp_fahrenheit.insert(0, str(round(temp_f, 2)))
+            
+            def clear_temps():
+                ent_temp_celsius.delete(0, tk.END)
+                ent_temp_fahrenheit.delete(0, tk.END)
+                ent_temp_kelvin.delete(0, tk.END)
+            
+            window = tk.Tk()
+            window.title('Temperature Converter')
+            
+            # Celsius temperature entry
+            ent_temp_celsius = tk.Entry(master=window)
+            ent_temp_celsius.pack(side=tk.TOP)
+            lbl_celsius = tk.Label(text='\N{DEGREE CELSIUS}', width=5)
+            lbl_celsius.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+            
+            # Fahrenheit temperature entry
+            ent_temp_fahrenheit = tk.Entry(master=window)
+            ent_temp_fahrenheit.pack(side=tk.TOP)
+            lbl_fahrenheit = tk.Label(text='\N{DEGREE FAHRENHEIT}', width=5)
+            lbl_fahrenheit.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+            
+            # Kelvin temperature entry
+            ent_temp_kelvin = tk.Entry(master=window)
+            ent_temp_kelvin.pack(side=tk.TOP)
+            lbl_kelvin = tk.Label(text='K', width=5)
+            lbl_kelvin.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+            
+            # Convert button
+            btn_convert = tk.Button(text="\N{RIGHTWARDS BLACK ARROW}", command=convert_temp)
+            btn_convert.pack(side=tk.BOTTOM, pady=10)
+            
+            # Clear button
+            btn_clear = tk.Button(text="Clear", command=clear_temps)
+            btn_clear.pack(side=tk.BOTTOM)
+            
+            window.mainloop()
+        </code></pre>
+        <div class="return-button">
+            <a href="python.html">Return to Python Projects</a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

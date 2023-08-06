@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Hex-Color-Generator Website Code</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+</head>
+
+<body class="is-preload">
+    <div id="main">
+        <h1>Hex-Color-Generator Website Code</h1>
+        <p>Below is the code for the Hex-Color-Generator Website project.</p>
+        <h2>index.html</h2>
+        <pre><code>
+            &lt;!DOCTYPE html&gt;
+            &lt;html&gt;
+            
+            &lt;head&gt;
+                &lt;meta charset="utf-8"&gt;
+                &lt;title&gt;RGB Color Generator&lt;/title&gt;
+            
+                &lt;link rel="stylesheet" type="text/css" href="styles.css"&gt;
+            &lt;/head&gt;
+            
+            &lt;body&gt;
+                &lt;h1&gt;RGB Color Generator&lt;/h1&gt;
+            
+                &lt;div class="main"&gt;
+                    Result:&lt;input type="text" id="box" value="rgb(255,255,255)"&gt;
+            
+                    &lt;!-- Range slider for red color --&gt;
+                    Red:&lt;input type="range" id="red" value="255" min="0" max="255"&gt;
+            
+                    &lt;!-- Range slider for green color --&gt;
+                    Green:&lt;input type="range" id="green" value="255" min="0" max="255"&gt;
+            
+                    &lt;!-- Range slider for blue color --&gt;
+                    Blue:&lt;input type="range" id="blue" value="255" min="0" max="255"&gt;
+                &lt;/div&gt;
+            
+                &lt;script src="script.js"&gt;&lt;/script&gt;
+            &lt;/body&gt;
+            
+            &lt;/html&gt;
+        </code></pre>
+        <h2>styles.css</h2>
+        <pre><code>
+            body {
+                margin: 0;
+                padding: 0;
+                display: grid;
+                place-items: center;
+                height: 100vh;
+            }
+            
+            .main {
+                height: 400px;
+                width: 250px;
+                background: #333;
+                border-radius: 10px;
+                display: grid;
+                place-items: center;
+                color: #fff;
+                font-family: verdana;
+            }
+            
+            #box {
+                height: 40px;
+                width: 80%;
+                border: none;
+                outline: none;
+                outline: none;
+                border-radius: 50px;
+                text-align: center;
+            }
+            
+            
+            /* CSS property for slider */
+            input[type="range"] {
+                -webkit-appearance: none;
+                height: 10px;
+                width: 80%;
+                border-radius: 50px;
+                outline: none;
+            }
+            
+            /* CSS property for slider thumb */
+            input[type="range"]::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                height: 25px;
+                width: 25px;
+                background: #fff;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+            
+            .main #red {
+                background: linear-gradient(90deg, #000, red);
+            }
+            
+            .main #green {
+                background: linear-gradient(90deg, #000, green);
+            }
+            
+            .main #blue {
+                background: linear-gradient(90deg, #000, blue);
+            }
+        </code></pre>
+        <h2>script.js</h2>
+        <pre><code>
+            function myColor() {
+
+                // Get the value of red color
+                var red = document.getElementById('red').value;
+            
+                // Get the value of green color
+                var green = document.getElementById('green').value;
+            
+                // Get the value of blue color
+                var blue = document.getElementById('blue').value;
+            
+                // rgb() function is used to create the color
+                // from red, green and blue values
+                var color = 'rgb(' + red + ',' + green + ',' + blue + ')';
+            
+                // Change background color with the
+                // color obtained by rgb function
+                document.body.style.backgroundColor = color;
+            
+                // Set the obtained rgb() color code in the
+                // input text field having id=box
+                document.getElementById('box').value = color;
+            
+            }
+            
+            // On changing red range slider myColor()
+            // function is called
+            document.getElementById('red')
+                .addEventListener('input', myColor);
+            
+            // On changing green range slider myColor()
+            // function is called
+            document.getElementById('green')
+                .addEventListener('input', myColor);
+            
+            // On changing blue range slider myColor()
+            // function is called
+            document.getElementById('blue')
+                .addEventListener('input', myColor);
+            
+        </code></pre>
+        <div class="return-button">
+            <a href="html.html">Return to HTML Projects</a>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

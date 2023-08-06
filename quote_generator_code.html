@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Python Quote-Generator Code</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+</head>
+
+<body class="is-preload">
+    <div id="main">
+        <h1>Python Quote-Generator Code</h1>
+        <p>Below is the code for the Python Quote-Generator project.</p>
+        <p><strong>Note:</strong> Before running the code, make sure to install the required libraries by executing the
+            following commands in your command prompt (CMD) or PowerShell:</p>
+        <pre><code>
+        pip install tkinter
+        pip install requests
+        </code></pre>
+        <h2>quote.py</h2>
+        <pre><code>
+            from tkinter import *
+            import requests
+            import random
+            
+            class QuoteGenerator:
+            
+                def __init__(self, master):
+                    self.master = master
+                    self.master.title("Quote Generator")
+                    self.master.geometry("1000x250")
+            
+                    self.quote_label = Label(self.master, wraplength=800, font=("Courier New", 14))
+                    self.quote_label.configure(text="")
+                    self.quote_label.pack(ipadx=20, ipady=20, padx=20, pady=20)
+            
+                    self.generate_quote_button = Button(self.master, text='Generate!', command=self.generate, width=30,
+                                                        font=("Courier New", 14), bg="#0c20f7", activebackground="#2839f7",
+                                                        fg="white", activeforeground="white")
+                    self.generate_quote_button.pack()
+            
+                    self.master.mainloop()
+            
+                def generate(self):
+                    self.quote_label.configure(text="")
+                    quote_json = requests.get("http://api.quotable.io/random").json()
+                    quote = "{}\n\nBy: {}".format(quote_json['content'], quote_json['author'])
+                    print(quote)
+                    self.quote_label.configure(text=quote)
+            
+            
+            if __name__ == "__main__":
+                root = Tk()
+                app = QuoteGenerator(root)
+                
+        </code></pre>
+        <div class="return-button">
+            <a href="python.html">Return to Python Projects</a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script</body>
+
+</html>

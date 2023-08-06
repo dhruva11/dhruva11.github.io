@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Python NetSpeed-Tester Code</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+</head>
+
+<body class="is-preload">
+    <div id="main">
+        <h1>Python NetSpeed-Tester Code</h1>
+        <p>Below is the code for the Python NetSpeed-Tester project.</p>
+        <p><strong>Note:</strong> Before running the code, make sure to install the required libraries by executing the
+            following commands in your command prompt (CMD) or PowerShell:</p>
+        <pre><code>
+        pip install tkinter
+        pip install speedtest-cli
+        pip install pyautogui
+        </code></pre>
+        <h2>Internet-Speed Test.py</h2>
+        <pre><code>
+            import tkinter as tk
+            from tkinter import ttk
+            import speedtest
+            import pyautogui
+            from datetime import datetime
+            import os
+            
+            
+            def calculate_jitter(ping_values):
+                # Calculate the jitter as the difference between consecutive ping values
+                if len(ping_values) >= 2:
+                    differences = [abs(ping_values[i] - ping_values[i-1]) for i in range(1, len(ping_values))]
+                    return sum(differences) / (len(differences) * 2)
+                else:
+                    return 0
+            
+            
+            def run_speedtest():
+                result_text.delete('1.0', tk.END)  # Clear previous results
+                result_text.insert(tk.END, "Running speedtest...\n")
+            
+                # Create a speedtest client
+                st = speedtest.Speedtest()
+            
+                # Perform speedtest measurements
+                server = st.get_best_server()
+                ping_values = [server['latency']]
+                jitter = calculate_jitter(ping_values)
+                download_speed = st.download() / 10**6  # Convert to Mbps
+                upload_speed = st.upload() / 10**6  # Convert to Mbps
+            
+                # Display the speedtest results
+                result_text.insert(tk.END, f"Ping: {ping_values[0]:.2f} ms\n")
+                result_text.insert(tk.END, f"Jitter: {jitter:.2f} ms\n")
+                result_text.insert(tk.END, f"Download Speed: {download_speed:.2f} Mbps\n")
+                result_text.insert(tk.END, f"Upload Speed: {upload_speed:.2f} Mbps\n")
+            
+            
+            def clear_text():
+                result_text.delete('1.0', tk.END)
+            
+            
+            def take_screenshot():
+                # Capture the screenshot of the GUI window
+                window.update()
+                x = window.winfo_rootx()
+                y = window.winfo_rooty()
+                width = window.winfo_width()
+                height = window.winfo_height()
+                screenshot = pyautogui.screenshot(region=(x, y, width, height))
+            
+                # Create the screenshots folder path
+                screenshots_folder = "C:/Users/dhruv/OneDrive/Pictures/Screenshots"
+                os.makedirs(screenshots_folder, exist_ok=True)
+            
+                # Get the current timestamp
+                now = datetime.now()
+                timestamp = now.strftime("%Y%m%d%H%M%S")
+            
+                # Set the screenshot file path
+                screenshot_file = os.path.join(screenshots_folder, f"screenshot_{timestamp}.png")
+            
+                # Save the screenshot to the specified file path
+                screenshot.save(screenshot_file)
+            
+            
+            # Create the main window
+            window = tk.Tk()
+            window.title("Speedtest GUI")
+            
+            # Create and position the result text area
+            result_text = tk.Text(window, height=15, width=50)
+            result_text.pack()
+            
+            # Create and position the run button
+            run_button = tk.Button(window, text="Run Speedtest", command=run_speedtest)
+            run_button.pack(pady=10)
+            
+            # Create and position the clear button
+            clear_button = tk.Button(window, text="Clear Speedtest", command=clear_text)
+            clear_button.pack(pady=5)
+            
+            # Create and position the screenshot button
+            screenshot_button = tk.Button(window, text="Take Screenshot", command=take_screenshot)
+            screenshot_button.pack(pady=5)
+            
+            # Start the main event loop
+            window.mainloop()
+            
+        </code></pre>
+        <div class="return-button">
+            <a href="python.html">Return to Python Projects</a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

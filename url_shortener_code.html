@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Python URL-Shortener Code</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+</head>
+
+<body class="is-preload">
+    <div id="main">
+        <h1>Python URL-Shortener Code</h1>
+        <p>Below is the code for the Python URL-Shortener project.</p>
+        <p><strong>Note:</strong> Before running the code, make sure to install the required libraries by executing the following commands in your command prompt (CMD) or PowerShell:</p>
+        <pre><code>
+            pip install tkinter
+            pip install pyshorteners</code></pre>
+        <h2>URL shortner.py</h2>
+        <pre><code>
+import tkinter as tk
+import pyshorteners
+from urllib.parse import urlparse
+
+
+def shorten_url():
+    long_url = url_entry.get()
+
+    # Check if the URL is well-formed
+    if not is_valid_url(long_url):
+        result_text.delete(1.0, tk.END)
+        result_text.insert(tk.END, "Invalid URL")
+        return
+
+    shortened_url = pyshorteners.Shortener().tinyurl.short(long_url)
+    result_text.delete(1.0, tk.END)  # Clear previous content
+    result_text.insert(tk.END, shortened_url)
+
+
+def clear_url():
+    url_entry.delete(0, tk.END)
+    result_text.delete(1.0, tk.END)
+
+
+def is_valid_url(url):
+    parsed_url = urlparse(url)
+    return bool(parsed_url.scheme and parsed_url.netloc)
+
+
+# Create the main window
+window = tk.Tk()
+window.title("URL Shortener")
+
+# Create and position the input label and entry field
+url_label = tk.Label(window, text="Enter URL which you want to Shorten:")
+url_label.pack()
+url_entry = tk.Entry(window, width=50)
+url_entry.pack()
+
+# Create and position the shorten button
+shorten_button = tk.Button(window, text="Shorten URL", command=shorten_url)
+shorten_button.pack()
+
+# Create and position the clear button
+clear_button = tk.Button(window, text="Clear URL", command=clear_url)
+clear_button.pack()
+
+# Create and position the result label
+result_label = tk.Label(window, text="URL After Shortening:")
+result_label.pack()
+
+# Create and position the result textbox
+result_text = tk.Text(window, height=5, width=50)
+result_text.pack()
+
+# Start the main event loop
+window.mainloop()
+</code></pre>
+        <div class="return-button">
+            <a href="python.html">Return to Python Projects</a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

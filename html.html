@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>HTML Projects</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+    <script>
+        function scrollToTop() {
+            if ('scrollBehavior' in document.documentElement.style) {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            } else {
+                window.scrollTo(0, 0);
+            }
+        }
+
+        window.addEventListener('scroll', function () {
+            var topButton = document.querySelector('.button.scrolly');
+            if (window.pageYOffset > 200) {
+                topButton.style.display = 'block';
+            } else {
+                topButton.style.display = 'none';
+            }
+        });
+    </script>
+</head>
+
+<body class="is-preload">
+    <div id="main">
+        <h1>HTML Projects</h1>
+        <p>This page showcases my projects developed using HTML, CSS, and JavaScript in Visual Studio Code.</p>
+
+        <section class="posts">
+            <article>
+                <header>
+                    <h2>Weather Forecast Website</h2>
+                </header>
+                <a href="#" class="image fit"><img src="images/weather.jpg" alt="" /></a>
+                <p>
+                    The Weather Forecast Website, developed using HTML, CSS, and JavaScript in Visual Studio Code, is a
+                    beautifully designed and interactive platform that provides users with up-to-date weather
+                    information.
+                    With its sleek and modern interface, this website offers a seamless and intuitive user experience.
+                    Users can easily navigate through the website to access weather details for their desired locations.
+                </p>
+                <ul class="actions special">
+                    <li><a href="weather_website_code.html" class="button">Code</a></li>
+                </ul>
+            </article>
+            <article>
+                <header>
+                    <h2>Random Joke Generator Website</h2>
+                </header>
+                <a href="#" class="image fit"><img src="images/Random joke.jpg" alt="" /></a>
+                <p>
+                    The Random Joke Generator Website, developed using HTML, CSS, and JavaScript in Visual Studio Code,
+                    is a fun and entertaining platform that brings laughter and amusement to its users.
+                    With a clean and user-friendly interface, this website offers a seamless and enjoyable experience.
+                    Users can click a button to generate random jokes and have a good laugh.
+                </p>
+                <ul class="actions special">
+                    <li><a href="random_joke_generator_code.html" class="button">Code</a></li>
+                </ul>
+            </article>
+            <article>
+                <header>
+                    <h2>To-do List Website</h2>
+                </header>
+                <a href="#" class="image fit"><img src="images/to-do.jpg" alt="" /></a>
+                <p>
+                    With its clean and minimalist design, the To-do List Website allows users to easily create, track,
+                    and organize their tasks in a centralized location.
+                    The website offers a straightforward interface where users can enter task descriptions, set due
+                    dates, and assign priority levels to each task.
+                    Users can mark tasks as complete, edit task details, or delete tasks as needed.
+                </p>
+                <ul class="actions special">
+                    <li><a href="todo_list_website_code.html" class="button">Code</a></li>
+                </ul>
+            </article>
+            <article>
+                <header>
+                    <h2>Temperature Converter Website</h2>
+                </header>
+                <a href="#" class="image fit"><img src="images/temp.jpg" alt="" /></a>
+                <p>
+                    The Temperature Converter Website, developed using HTML, CSS, and JavaScript in Visual Studio Code,
+                    is a user-friendly and efficient platform designed to convert temperature values between different
+                    units.
+                    Whether you're traveling or simply curious about temperature conversions, this website offers a
+                    seamless and convenient solution.
+                    With its intuitive interface, the Temperature Converter Website allows users to easily input a
+                    temperature value and select the desired unit of measurement, such as Celsius or Fahrenheit.
+                </p>
+                <ul class="actions special">
+                    <li><a href="temperature_converter_website_code.html" class="button">Code</a></li>
+                </ul>
+            </article>
+            <article>
+                <header>
+                    <h2>Currency Converter Website</h2>
+                </header>
+                <a href="#" class="image fit"><img src="images/currency.jpg" alt="" /></a>
+                <p>
+                    The Currency Converter Website, developed using HTML, CSS, and JavaScript in Visual Studio Code, is
+                    a versatile and user-friendly platform designed to facilitate currency conversion for users around
+                    the world.
+                    With its intuitive interface and functionality, this website offers a seamless and efficient
+                    currency conversion experience.
+                    The website provides a wide range of currency options, allowing users to easily convert between
+                    different currencies.
+                </p>
+                <ul class="actions special">
+                    <li><a href="currency_converter_website_code.html" class="button">Code</a></li>
+                </ul>
+            </article>
+            <article>
+                <header>
+                    <h2>Hex Color Generator Website</h2>
+                </header>
+                <a href="#" class="image fit"><img src="images/hex.jpg" alt="" /></a>
+                <p>
+                    The Hex Color Generator Website, created using HTML, CSS, and JavaScript in Visual Studio Code, is a
+                    vibrant and interactive platform that allows users to explore and generate various hex color codes.
+                    The website provides a simple yet powerful tool for generating random hex color codes. Users can
+                    move the cursor to generate a new color, and the corresponding hex code is displayed on the screen.
+                    This feature is particularly useful for designers, developers, and anyone in need of color
+                    inspiration for their projects.
+                </p>
+                <ul class="actions special">
+                    <li><a href="hex_color_generator_code.html" class="button">Code</a></li>
+                </ul>
+            </article>
+        </section>
+        <div class="return-button">
+            <a href="index.html">Return to Home</a>
+        </div>
+        <a href="#" class="button icon solid solo fa-arrow-up scrolly bottom-right" onclick="scrollToTop(); return false;" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; background-color: grey; color: #fff; padding: 10px; border-radius: 50%; display: none;">Top</a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

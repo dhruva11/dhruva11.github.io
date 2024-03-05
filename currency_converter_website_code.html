@@ -1,0 +1,515 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Currency-Converter Website Code</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+</head>
+
+<body class="is-preload">
+    <div id="main">
+        <h1>Currency-Converter Website Code</h1>
+        <p>Below is the code for the Currency-Converter Website project.</p>
+        <h2>index.html</h2>
+        <pre><code>
+            &lt;!DOCTYPE html&gt;
+            &lt;html&gt;
+            
+            &lt;head&gt;
+                &lt;title&gt;Currency Converter&lt;/title&gt;
+                &lt;style&gt;
+                    body {
+                        background-color: skyblue;
+                        /* Updated background color */
+                        display: flex;
+                        justify-content: center;
+                        /* Center align horizontally */
+                        align-items: center;
+                        /* Center align vertically */
+                        height: 100vh;
+                        /* Set the height of the body */
+                    }
+            
+                    .heading {
+                        font-family: 'Pacifico', cursive;
+                        margin: 35px auto 20px;
+                        text-align: center;
+                    }
+            
+                    hr {
+                        border-top: 2px solid black;
+                        width: 40%;
+                        margin-bottom: 55px;
+                    }
+            
+                    .main {
+                        width: 50vw;
+                        padding: 30px;
+                        border-radius: 5px;
+                        background-color: grey;
+                        color: white;
+                    }
+            
+                    label {
+                        font-size: 20px;
+                    }
+            
+                    .btn {
+                        width: 200px;
+                    }
+            
+                    #finalAmount {
+                        font-family: 'Lobster', cursive;
+                        display: none;
+                        margin: 50px auto;
+                    }
+            
+                    #finalAmount h2 {
+                        font-size: 50px;
+                    }
+            
+                    .finalValue {
+                        font-family: 'Amiri', serif;
+                    }
+            
+                    .box {
+                        width: 80%;
+                        margin: 0 auto;
+                        padding: 20px;
+                        border-radius: 5px;
+                        background-color: rgba(255, 255, 255, 0.8);
+                        color: black;
+                    }
+            
+                    .box label {
+                        display: block;
+                        margin-bottom: 10px;
+                    }
+            
+                    .box input,
+                    .box select {
+                        margin-bottom: 10px;
+                        width: 100%;
+                        padding: 5px;
+                    }
+            
+                    .box button {
+                        margin-bottom: 10px;
+                        width: 100px;
+                    }
+            
+                    #convertedAmountBox {
+                        margin-top: 20px;
+                    }
+            
+                    #finalAmount {
+                        font-family: 'Lobster', cursive;
+                        display: none;
+                        margin: 10px 0;
+                    }
+            
+                    .finalValue {
+                        font-family: 'Amiri', serif;
+                        font-size: 24px;
+                    }
+            
+                    @media (max-width: 768px) {
+                        hr {
+                            width: 60%;
+                        }
+            
+                        .main {
+                            width: 100%;
+                        }
+                    }
+            
+                    @media (max-width: 400px) {
+                        .heading {
+                            font-size: 60px;
+                        }
+            
+                        hr {
+                            width: 75%;
+                        }
+            
+                        #finalAmount h2,
+                        .finalValue {
+                            font-size: 40px;
+                        }
+                    }
+                &lt;/style&gt;
+            &lt;/head&gt;
+            
+            &lt;body&gt;
+                &lt;div class="main"&gt;
+                    &lt;h1 class="heading"&gt;Currency Converter&lt;/h1&gt;
+                    &lt;hr&gt;
+            
+                    &lt;div class="box"&gt;
+                        &lt;label for="searchBox"&gt;Amount to Convert:&lt;/label&gt;
+                        &lt;input type="number" class="searchBox" id="searchBox" min="0" placeholder="Enter amount"&gt;
+            
+                        &lt;label for="from"&gt;From Currency:&lt;/label&gt;
+                        &lt;select class="from" id="from"&gt;
+                            &lt;option value=""&gt;Select One …&lt;/option&gt;
+                            &lt;option value="USD"&gt;USD&lt;/option&gt;
+                            &lt;option value="AED"&gt;AED&lt;/option&gt;
+                            &lt;option value="ARS"&gt;ARS&lt;/option&gt;
+                            &lt;option value="AUD"&gt;AUD&lt;/option&gt;
+                            &lt;option value="BGN"&gt;BGN&lt;/option&gt;
+                            &lt;option value="BRL"&gt;BRL&lt;/option&gt;
+                            &lt;option value="BSD"&gt;BSD&lt;/option&gt;
+                            &lt;option value="CAD"&gt;CAD&lt;/option&gt;
+                            &lt;option value="CHF"&gt;CHF&lt;/option&gt;
+                            &lt;option value="CLP"&gt;CLP&lt;/option&gt;
+                            &lt;option value="CNY"&gt;CNY&lt;/option&gt;
+                            &lt;option value="COP"&gt;COP&lt;/option&gt;
+                            &lt;option value="CZK"&gt;CZK&lt;/option&gt;
+                            &lt;option value="DKK"&gt;DKK&lt;/option&gt;
+                            &lt;option value="DOP"&gt;DOP&lt;/option&gt;
+                            &lt;option value="EGP"&gt;EGP&lt;/option&gt;
+                            &lt;option value="EUR"&gt;EUR&lt;/option&gt;
+                            &lt;option value="FJD"&gt;FJD&lt;/option&gt;
+                            &lt;option value="GBP"&gt;GBP&lt;/option&gt;
+                            &lt;option value="GTQ"&gt;GTQ&lt;/option&gt;
+                            &lt;option value="HKD"&gt;HKD&lt;/option&gt;
+                            &lt;option value="HRK"&gt;HRK&lt;/option&gt;
+                            &lt;option value="HUF"&gt;HUF&lt;/option&gt;
+                            &lt;option value="IDR"&gt;IDR&lt;/option&gt;
+                            &lt;option value="ILS"&gt;ILS&lt;/option&gt;
+                            &lt;option value="INR"&gt;INR&lt;/option&gt;
+                            &lt;option value="ISK"&gt;ISK&lt;/option&gt;
+                            &lt;option value="JPY"&gt;JPY&lt;/option&gt;
+                            &lt;option value="KRW"&gt;KRW&lt;/option&gt;
+                            &lt;option value="KZT"&gt;KZT&lt;/option&gt;
+                            &lt;option value="MVR"&gt;MVR&lt;/option&gt;
+                            &lt;option value="MXN"&gt;MXN&lt;/option&gt;
+                            &lt;option value="MYR"&gt;MYR&lt;/option&gt;
+                            &lt;option value="NOK"&gt;NOK&lt;/option&gt;
+                            &lt;option value="NZD"&gt;NZD&lt;/option&gt;
+                            &lt;option value="PAB"&gt;PAB&lt;/option&gt;
+                            &lt;option value="PEN"&gt;PEN&lt;/option&gt;
+                            &lt;option value="PHP"&gt;PHP&lt;/option&gt;
+                            &lt;option value="PKR"&gt;PKR&lt;/option&gt;
+                            &lt;option value="PLN"&gt;PLN&lt;/option&gt;
+                            &lt;option value="PYG"&gt;PYG&lt;/option&gt;
+                            &lt;option value="RON"&gt;RON&lt;/option&gt;
+                            &lt;option value="RUB"&gt;RUB&lt;/option&gt;
+                            &lt;option value="SAR"&gt;SAR&lt;/option&gt;
+                            &lt;option value="SEK"&gt;SEK&lt;/option&gt;
+                            &lt;option value="SGD"&gt;SGD&lt;/option&gt;
+                            &lt;option value="THB"&gt;THB&lt;/option&gt;
+                            &lt;option value="TRY"&gt;TRY&lt;/option&gt;
+                            &lt;option value="TWD"&gt;TWD&lt;/option&gt;
+                            &lt;option value="UAH"&gt;UAH&lt;/option&gt;
+                            &lt;option value="UYU"&gt;UYU&lt;/option&gt;
+                            &lt;option value="ZAR"&gt;ZAR&lt;/option&gt;
+                        &lt;/select&gt;
+            
+                        &lt;label for="to"&gt;To Currency:&lt;/label&gt;
+                        &lt;select class="to" id="to"&gt;
+                            &lt;option value=""&gt;Select One …&lt;/option&gt;
+                            &lt;option value="USD"&gt;USD&lt;/option&gt;
+                            &lt;option value="AED"&gt;AED&lt;/option&gt;
+                            &lt;option value="ARS"&gt;ARS&lt;/option&gt;
+                            &lt;option value="AUD"&gt;AUD&lt;/option&gt;
+                            &lt;option value="BGN"&gt;BGN&lt;/option&gt;
+                            &lt;option value="BRL"&gt;BRL&lt;/option&gt;
+                            &lt;option value="BSD"&gt;BSD&lt;/option&gt;
+                            &lt;option value="CAD"&gt;CAD&lt;/option&gt;
+                            &lt;option value="CHF"&gt;CHF&lt;/option&gt;
+                            &lt;option value="CLP"&gt;CLP&lt;/option&gt;
+                            &lt;option value="CNY"&gt;CNY&lt;/option&gt;
+                            &lt;option value="COP"&gt;COP&lt;/option&gt;
+                            &lt;option value="CZK"&gt;CZK&lt;/option&gt;
+                            &lt;option value="DKK"&gt;DKK&lt;/option&gt;
+                            &lt;option value="DOP"&gt;DOP&lt;/option&gt;
+                            &lt;option value="EGP"&gt;EGP&lt;/option&gt;
+                            &lt;option value="EUR"&gt;EUR&lt;/option&gt;
+                            &lt;option value="FJD"&gt;FJD&lt;/option&gt;
+                            &lt;option value="GBP"&gt;GBP&lt;/option&gt;
+                            &lt;option value="GTQ"&gt;GTQ&lt;/option&gt;
+                            &lt;option value="HKD"&gt;HKD&lt;/option&gt;
+                            &lt;option value="HRK"&gt;HRK&lt;/option&gt;
+                            &lt;option value="HUF"&gt;HUF&lt;/option&gt;
+                            &lt;option value="IDR"&gt;IDR&lt;/option&gt;
+                            &lt;option value="ILS"&gt;ILS&lt;/option&gt;
+                            &lt;option value="INR"&gt;INR&lt;/option&gt;
+                            &lt;option value="ISK"&gt;ISK&lt;/option&gt;
+                            &lt;option value="JPY"&gt;JPY&lt;/option&gt;
+                            &lt;option value="KRW"&gt;KRW&lt;/option&gt;
+                            &lt;option value="KZT"&gt;KZT&lt;/option&gt;
+                            &lt;option value="MVR"&gt;MVR&lt;/option&gt;
+                            &lt;option value="MXN"&gt;MXN&lt;/option&gt;
+                            &lt;option value="MYR"&gt;MYR&lt;/option&gt;
+                            &lt;option value="NOK"&gt;NOK&lt;/option&gt;
+                            &lt;option value="NZD"&gt;NZD&lt;/option&gt;
+                            &lt;option value="PAB"&gt;PAB&lt;/option&gt;
+                            &lt;option value="PEN"&gt;PEN&lt;/option&gt;
+                            &lt;option value="PHP"&gt;PHP&lt;/option&gt;
+                            &lt;option value="PKR"&gt;PKR&lt;/option&gt;
+                            &lt;option value="PLN"&gt;PLN&lt;/option&gt;
+                            &lt;option value="PYG"&gt;PYG&lt;/option&gt;
+                            &lt;option value="RON"&gt;RON&lt;/option&gt;
+                            &lt;option value="RUB"&gt;RUB&lt;/option&gt;
+                            &lt;option value="SAR"&gt;SAR&lt;/option&gt;
+                            &lt;option value="SEK"&gt;SEK&lt;/option&gt;
+                            &lt;option value="SGD"&gt;SGD&lt;/option&gt;
+                            &lt;option value="THB"&gt;THB&lt;/option&gt;
+                            &lt;option value="TRY"&gt;TRY&lt;/option&gt;
+                            &lt;option value="TWD"&gt;TWD&lt;/option&gt;
+                            &lt;option value="UAH"&gt;UAH&lt;/option&gt;
+                            &lt;option value="UYU"&gt;UYU&lt;/option&gt;
+                            &lt;option value="ZAR"&gt;ZAR&lt;/option&gt;
+                        &lt;/select&gt;
+            
+                        &lt;button class="convert"&gt;Convert&lt;/button&gt;
+            
+                        &lt;div id="convertedAmountBox"&gt;
+                            &lt;label&gt;Converted Amount:&lt;/label&gt;
+                            &lt;div id="finalAmount"&gt;
+                                &lt;h2 class="finalValue"&gt;&lt;/h2&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+            
+                        &lt;button class="reset" onclick="clearVal()"&gt;Reset&lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            
+                &lt;script&gt;
+                    // Include API for currency change
+                    const api = "https://api.exchangerate-api.com/v4/latest/USD";
+            
+                    // For selecting different controls
+                    let search = document.querySelector(".searchBox");
+                    let convert = document.querySelector(".convert");
+                    let fromCurrency = document.querySelector(".from");
+                    let toCurrency = document.querySelector(".to");
+                    let finalValue = document.querySelector(".finalValue");
+                    let finalAmount = document.getElementById("finalAmount");
+                    let resultFrom;
+                    let resultTo;
+                    let searchValue;
+            
+                    // Event when currency is changed
+                    fromCurrency.addEventListener('change', (event) => {
+                        resultFrom = `${event.target.value}`;
+                    });
+            
+                    // Event when currency is changed
+                    toCurrency.addEventListener('change', (event) => {
+                        resultTo = `${event.target.value}`;
+                    });
+            
+                    search.addEventListener('input', updateValue);
+            
+                    // Function for updating value
+                    function updateValue(e) {
+                        searchValue = e.target.value;
+                    }
+            
+                    // When user clicks, it calls function getResults
+                    convert.addEventListener("click", getResults);
+            
+                    // Function getResults
+                    function getResults() {
+                        fetch(`${api}`)
+                            .then(currency => {
+                                return currency.json();
+                            }).then(displayResults);
+                    }
+            
+                    // Display results after conversion
+                    function displayResults(currency) {
+                        let fromRate = currency.rates[resultFrom];
+                        let toRate = currency.rates[resultTo];
+                        finalValue.innerHTML =
+                            ((toRate / fromRate) * searchValue).toFixed(2);
+                        finalAmount.style.display = "block";
+                    }
+            
+                    // When user clicks on reset button
+                    function clearVal() {
+                        window.location.reload();
+                        finalValue.innerHTML = ((toRate / fromRate) * parseFloat(searchValue)).toFixed(3);
+                    };
+                &lt;/script&gt;
+            &lt;/body&gt;
+            
+            &lt;/html&gt;
+        </code></pre>
+        <h2>styles.css</h2>
+        <pre><code>
+            body {
+                background-color: aliceblue;
+                background-position: center;
+                background-size: cover;
+                background-attachment: fixed;
+                background-repeat: no-repeat;
+            }
+            
+            .box {
+                width: 80%;
+                margin: 0 auto;
+                padding: 20px;
+                border-radius: 5px;
+                background-color: rgba(255, 255, 255, 0.8);
+                color: black;
+            }
+            
+            .container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                background-color: skyblue;
+            }
+            
+            .heading {
+                font-family: 'Pacifico', cursive;
+                margin: 0 auto 20px;
+            }
+            
+            hr {
+                border-top: 2px solid black;
+                width: 40%;
+                margin-bottom: 55px;
+            }
+            
+            .main {
+                width: 50vw;
+                margin: auto;
+                padding: 30px;
+                border-radius: 5px;
+                background-color: rgba(0, 0, 0, 0.5);
+                color: white;
+            }
+            
+            label {
+                font-size: 20px;
+            }
+            
+            .btn {
+                width: 200px;
+            }
+            
+            #finalAmount {
+                font-family: 'Lobster', cursive;
+                display: none;
+                margin: 50px auto;
+            }
+            
+            #finalAmount h2 {
+                font-size: 50px;
+            }
+            
+            .finalValue {
+                font-family: 'Amiri', serif;
+            }
+            
+            @media (max-width: 768px) {
+                hr {
+                    width: 60%;
+                }
+            
+                .main {
+                    width: 100%;
+                }
+            }
+            
+            @media (max-width: 400px) {
+                .heading {
+                    font-size: 60px;
+                }
+            
+                hr {
+                    width: 75%;
+                }
+            
+                #finalAmount h2,
+                .finalValue {
+                    font-size: 40px;
+                }
+            }
+        </code></pre>
+        <h2>script.js</h2>
+        <pre><code>
+            // Include api for currency change
+const api = "https://api.exchangerate-api.com/v4/latest/USD";
+
+// For selecting different controls
+let search = document.querySelector(".searchBox");
+let convert = document.querySelector(".convert");
+let fromCurrecy = document.querySelector(".from");
+let toCurrecy = document.querySelector(".to");
+let finalValue = document.querySelector(".finalValue");
+let finalAmount = document.getElementById("finalAmount");
+let resultFrom;
+let resultTo;
+let searchValue;
+
+// Event when currency is changed
+fromCurrecy.addEventListener('change', (event) => {
+	resultFrom = `${event.target.value}`;
+});
+
+// Event when currency is changed
+toCurrecy.addEventListener('change', (event) => {
+	resultTo = `${event.target.value}`;
+});
+
+search.addEventListener('input', updateValue);
+
+// Function for updating value
+function updateValue(e) {
+	searchValue = e.target.value;
+}
+
+// When user clicks, it calls function getresults
+convert.addEventListener("click", getResults);
+
+// Function getresults
+function getResults() {
+	fetch(`${api}`)
+		.then(currency => {
+			return currency.json();
+		}).then(displayResults);
+}
+
+// Display results after conversion
+function displayResults(currency) {
+	let fromRate = currency.rates[resultFrom];
+	let toRate = currency.rates[resultTo];
+	finalValue.innerHTML =
+		((toRate / fromRate) * searchValue).toFixed(2);
+	finalAmount.style.display = "block";
+}
+
+// When user click on reset button
+function clearVal() {
+	window.location.reload();
+	document.getElementsByClassName("finalValue").innerHTML = "";
+};
+        </code></pre>
+        <div class="return-button">
+            <a href="html.html">Return to HTML Projects</a>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

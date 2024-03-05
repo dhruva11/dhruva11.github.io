@@ -1,0 +1,273 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Flutter BMI Calculator Code</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+</head>
+
+<body class="is-preload">
+    <div id="main">
+        <h1>Flutter BMI Calculator Code</h1>
+        <p>Below is the code for the Flutter BMI Calculator project.</p>
+        <h2>pubspec.yaml</h2>
+        <pre><code>
+name: bmi_calculator
+description: A new Flutter project.
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.5 <4.0.0'
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^2.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  # assets:
+  #   - images/a_dot_burr.jpeg
+  #   - images/a_dot_ham.jpeg
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
+        </code></pre>
+        <h2>main.dart</h2>
+        <pre><code>
+import 'package:flutter/material.dart';
+
+void main() => runApp(BMICalculatorApp());
+
+class BMICalculatorApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'BMI Calculator',
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('BMI Calculator'),
+        ),
+        body: Center(
+          child: Container(
+            color: Colors.white, // Set the background color here
+            padding: EdgeInsets.all(16.0),
+            child: BMICalculatorScreen(),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class BMICalculatorScreen extends StatefulWidget {
+  @override
+  _BMICalculatorScreenState createState() => _BMICalculatorScreenState();
+}
+
+class _BMICalculatorScreenState extends State<BMICalculatorScreen> {
+  TextEditingController _weightController = TextEditingController();
+  TextEditingController _heightController = TextEditingController();
+  double _bmi = 0.0;
+  String _category = '';
+  Color _textColor = Colors.black;
+
+  @override
+  void dispose() {
+    _weightController.dispose();
+    _heightController.dispose();
+    super.dispose();
+  }
+
+  void _calculateBMI() {
+    double weight = double.tryParse(_weightController.text) ?? 0.0;
+    double height = double.tryParse(_heightController.text) ?? 0.0;
+
+    setState(() {
+      _bmi = weight / ((height / 100) * (height / 100));
+
+      if (_bmi < 18.5) {
+        _category = 'Underweight';
+        _textColor = Colors.blue;
+      } else if (_bmi >= 18.5 && _bmi < 25.0) {
+        _category = 'Normal Weight';
+        _textColor = Colors.green;
+      } else if (_bmi >= 25.0 && _bmi < 30.0) {
+        _category = 'Overweight';
+        _textColor = Colors.orange;
+      } else if (_bmi >= 30.0 && _bmi < 40.0) {
+        _category = 'Obese';
+        _textColor = Colors.red;
+      } else {
+        _category = 'Extreme';
+        _textColor = Colors.purple;
+      }
+    });
+  }
+
+  void _clearFields() {
+    setState(() {
+      _weightController.text = '';
+      _heightController.text = '';
+      _bmi = 0.0;
+      _category = '';
+      _textColor = Colors.black;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          TextField(
+            controller: _weightController,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              labelText: 'Weight (kg)',
+            ),
+          ),
+          SizedBox(height: 16.0),
+          TextField(
+            controller: _heightController,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              labelText: 'Height (cm)',
+            ),
+          ),
+          SizedBox(height: 16.0),
+          ElevatedButton(
+            child: Text('Calculate BMI'),
+            onPressed: _calculateBMI,
+          ),
+          SizedBox(height: 16.0),
+          Text(
+            'BMI: ${_bmi.toStringAsFixed(2)}',
+            style: TextStyle(fontSize: 24.0),
+          ),
+          SizedBox(height: 16.0),
+          Row(
+            children: [
+              Text(
+                'Category: ',
+                style: TextStyle(
+                  fontSize: 24.0,
+                ),
+              ),
+              Text(
+                _category,
+                style: TextStyle(
+                  fontSize: 24.0,
+                  color: _textColor,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 16.0),
+          ElevatedButton(
+            child: Text('Clear'),
+            onPressed: _clearFields,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+        </code></pre>
+        <div class="return-button">
+            <a href="flutter.html">Return to Flutter Projects</a>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

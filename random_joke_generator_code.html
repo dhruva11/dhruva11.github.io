@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Random-Joke Generator Website Code</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+</head>
+
+<body class="is-preload">
+    <div id="main">
+        <h1>Random-Joke Generator Website Code</h1>
+        <p>Below is the code for the Random-Joke Generator Website project here.</p>
+        <h2>index.html</h2>
+        <pre><code>
+            &lt;!DOCTYPE html&gt;
+            &lt;html lang="en"&gt;
+            
+            &lt;head&gt;
+                &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+                &lt;title&gt;Random Joke Generator&lt;/title&gt;
+                &lt;link rel="stylesheet" href="style.css"&gt;
+            &lt;/head&gt;
+            
+            &lt;body&gt;
+                &lt;div class="wrapper"&gt;
+                    &lt;span&gt;Random Joke Generator&lt;/span&gt;
+                    &lt;p id="joke"&gt;&lt;/p&gt;
+                    &lt;button id="btn"&gt;Generate Joke&lt;/button&gt;
+                &lt;/div&gt;
+            
+                &lt;script src="script.js"&gt;&lt;/script&gt;
+            &lt;/body&gt;
+            
+            &lt;/html&gt;
+        </code></pre>
+        <h2>style.css</h2>
+        <pre><code>
+            * {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                font-family: "Rubik", sans-serif;
+            }
+            
+            body {
+                background-color: #0772a7;
+            }
+            
+            .wrapper {
+                width: 400px;
+                padding: 50px 40px;
+                background-color: #fafdfd;
+                position: absolute;
+                transform: translate(-50%, -50%);
+                top: 50%;
+                left: 50%;
+                border-radius: 5px;
+                box-shadow: 20px 20px 40px rgba(97, 63, 0, 0.4);
+            }
+            
+            span {
+                display: block;
+                text-align: center;
+                margin-top: -30px;
+                color: #063f63;
+                font-size: 25px;
+                font-family: sans-serif;
+                font-weight: 500;
+            }
+            
+            p {
+                font-size: 16px;
+                box-shadow: 0 0 20px rgba(0, 139, 253, 0.28);
+                font-weight: 400;
+                text-align: center;
+                word-wrap: break-word;
+                line-height: 35px;
+                margin: 30px 0;
+                opacity: 0;
+            }
+            
+            .fade {
+                opacity: 1;
+                transition: opacity 0.1s;
+            }
+            
+            button {
+                display: block;
+                background-color: #0354ab;
+                border: none;
+                padding: 5px;
+                font-size: 18px;
+                color: #e7e7ec;
+                font-weight: 500;
+                padding: 12px 25px;
+                margin: 0 auto;
+                border-radius: 5px;
+                cursor: pointer;
+                outline: none;
+            }
+        </code></pre>
+        <h2>script.js</h2>
+        <pre><code>
+            const jokeContainer = document.getElementById("joke");
+            const btn = document.getElementById("btn");
+            const url = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single";
+
+            let getJoke = () => {
+                jokeContainer.classList.remove("fade");
+                fetch(url)
+                    .then(data =&gt; data.json())
+                    .then(item =&gt; {
+                        jokeContainer.textContent = `${item.joke}`;
+                        jokeContainer.classList.add("fade");
+                    });
+            };
+            btn.addEventListener("click", getJoke);
+            getJoke();
+        </code></pre>
+        <div class="return-button">
+            <a href="html.html">Return to HTML Projects</a>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

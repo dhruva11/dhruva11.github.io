@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Temperature-Converter Website Code</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+</head>
+
+<body class="is-preload">
+    <div id="main">
+        <h1>Temperature-Converter Website Code</h1>
+        <p>Below is the code for the Temperature-Converter Website project.</p>
+        <h2>index.html</h2>
+        <pre><code>
+            &lt;!DOCTYPE html&gt;
+            &lt;html&gt;
+            
+            &lt;head&gt;
+                &lt;title&gt;Temperature Converter&lt;/title&gt;
+                &lt;link rel="stylesheet" type="text/css" href="styles.css"&gt;
+            &lt;/head&gt;
+            
+            &lt;body&gt;
+                &lt;div class="converter-box"&gt;
+                    &lt;h2&gt;Temperature Converter&lt;/h2&gt;
+                    &lt;div class="input-container"&gt;
+                        &lt;label for="celsius"&gt;Celsius:&lt;/label&gt;
+                        &lt;input type="number" id="celsius" placeholder="Enter temperature"&gt;
+                    &lt;/div&gt;
+                    &lt;div class="input-container"&gt;
+                        &lt;label for="fahrenheit"&gt;Fahrenheit:&lt;/label&gt;
+                        &lt;input type="number" id="fahrenheit" placeholder="Enter temperature"&gt;
+                    &lt;/div&gt;
+                    &lt;div class="button-container"&gt;
+                        &lt;button onclick="convertToFahrenheit()"&gt;Convert to Fahrenheit&lt;/button&gt;
+                        &lt;button onclick="convertToCelsius()"&gt;Convert to Celsius&lt;/button&gt;
+                    &lt;/div&gt;
+                    &lt;div class="input-container"&gt;
+                        &lt;label for="result"&gt;Result:&lt;/label&gt;
+                        &lt;input type="text" id="result" readonly placeholder="Result will be displayed here"&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            
+                &lt;script src="script.js"&gt;&lt;/script&gt;
+            &lt;/body&gt;
+            
+            &lt;/html&gt;
+        </code></pre>
+        <h2>styles.css</h2>
+        <pre><code>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                font-family: Arial, sans-serif;
+                background-color: orange;
+            }
+            
+            .converter-box {
+                width: 300px;
+                padding: 20px;
+                background-color: black;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+            
+            .converter-box h2 {
+                text-align: center;
+                color: white;
+            }
+            
+            .input-container {
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+            }
+            
+            .input-container label {
+                color: white;
+                flex-basis: 70px;
+                margin-right: 10px;
+            }
+            
+            .converter-box input[type="number"],
+            .converter-box input[type="text"] {
+                flex-grow: 1;
+                width: 100%;
+                /* Set equal width for all input elements */
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+            }
+            
+            .button-container {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 10px;
+            }
+            
+            .converter-box button {
+                flex-basis: calc(50% - 5px);
+                padding: 10px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+        </code></pre>
+        <h2>script.js</h2>
+        <pre><code>
+            function clearFahrenheit() {
+                document.getElementById('fahrenheit').value = '';
+                document.getElementById('result').value = '';
+            }
+            
+            function clearCelsius() {
+                document.getElementById('celsius').value = '';
+                document.getElementById('result').value = '';
+            }
+            
+            function convertToFahrenheit() {
+                const celsius = parseFloat(document.getElementById('celsius').value);
+                const fahrenheit = (celsius * 9 / 5) + 32;
+                document.getElementById('fahrenheit').value = '';
+                document.getElementById('result').value = isNaN(fahrenheit) ? '' : fahrenheit.toFixed(2) + " °F";
+            }
+            
+            function convertToCelsius() {
+                const fahrenheit = parseFloat(document.getElementById('fahrenheit').value);
+                const celsius = (fahrenheit - 32) * 5 / 9;
+                document.getElementById('celsius').value = '';
+                document.getElementById('result').value = isNaN(celsius) ? '' : celsius.toFixed(2) + " °C";
+            }
+            
+        </code></pre>
+        <div class="return-button">
+            <a href="html.html">Return to HTML Projects</a>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

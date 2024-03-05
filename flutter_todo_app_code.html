@@ -1,0 +1,372 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Flutter ToDo-App Code</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+</head>
+
+<body class="is-preload">
+    <div id="main">
+        <h1>Flutter ToDo-App Code</h1>
+        <p>Below is the code for the Flutter ToDo-App project.</p>
+        <h2>pubspec.yaml</h2>
+        <pre><code>
+name: to_do_app
+description: A new Flutter project.
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.5 <4.0.0'
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+  provider: ^6.0.1
+  uuid: ^3.0.4
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^2.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  # assets:
+  #   - images/a_dot_burr.jpeg
+  #   - images/a_dot_ham.jpeg
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+</code></pre>
+        <h2>main.dart</h2>
+        <pre><code>
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'task.dart';
+import 'task_list.dart';
+
+void main() {
+  runApp(TaskApp());
+}
+
+class TaskApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => TaskList(),
+      child: MaterialApp(
+        title: 'Task Manager',
+        theme: ThemeData(
+          primaryColor: Colors.blue,
+        ),
+        home: TaskScreen(),
+      ),
+    );
+  }
+}
+
+class TaskScreen extends StatelessWidget {
+  final TextEditingController _titleController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    final taskList = Provider.of<TaskList>(context);
+
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Task Manager'),
+          bottom: TabBar(
+            tabs: [
+              Tab(text: 'All Tasks'),
+              Tab(text: 'Still Doing'),
+              Tab(text: 'Completed'),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: [
+            ListView.builder(
+              itemCount: taskList.tasks.length,
+              itemBuilder: (context, index) {
+                final task = taskList.tasks[index];
+                return ListTile(
+                  title: Text(task.title),
+                  trailing: Checkbox(
+                    value: task.isCompleted,
+                    onChanged: (value) {
+                      taskList.toggleTaskStatus(task.id);
+                    },
+                  ),
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('Edit Task'),
+                          content: TextField(
+                            controller: _titleController..text = task.title,
+                            decoration: InputDecoration(labelText: 'Task Title'),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                                final newTitle = _titleController.text.trim();
+                                if (newTitle.isNotEmpty) {
+                                  taskList.updateTask(task.id, newTitle, task.isCompleted);
+                                  _titleController.clear();
+                                }
+                              },
+                              child: Text('Update'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  onLongPress: () {
+                    showDialog(
+```html
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('Delete Task'),
+                          content: Text('Are you sure you want to delete the task?'),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                                taskList.deleteTask(task.id);
+                              },
+                              child: Text('Delete'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text('Cancel'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                );
+              },
+            ),
+            ListView.builder(
+              itemCount: taskList.tasks.length,
+              itemBuilder: (context, index) {
+                final task = taskList.tasks[index];
+                if (!task.isCompleted) {
+                  return ListTile(
+                    title: Text(task.title),
+                    trailing: Checkbox(
+                      value: task.isCompleted,
+                      onChanged: (value) {
+                        taskList.toggleTaskStatus(task.id);
+                      },
+                    ),
+                  );
+                } else {
+                  return SizedBox.shrink();
+                }
+              },
+            ),
+            ListView.builder(
+              itemCount: taskList.tasks.length,
+              itemBuilder: (context, index) {
+                final task = taskList.tasks[index];
+                if (task.isCompleted) {
+                  return ListTile(
+                    title: Text(task.title),
+                    trailing: Checkbox(
+                      value: task.isCompleted,
+                      onChanged: (value) {
+                        taskList.toggleTaskStatus(task.id);
+                      },
+                    ),
+                  );
+                } else {
+                  return SizedBox.shrink();
+                }
+              },
+            ),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: Text('Add Task'),
+                  content: TextField(
+                    controller: _titleController,
+                    decoration: InputDecoration(labelText: 'Task Title'),
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        final title = _titleController.text.trim();
+                        if (title.isNotEmpty) {
+                          final id = UniqueKey().toString();
+                          final newTask = Task(title: title, id: id);
+                          taskList.addTask(newTask);
+                          _titleController.clear();
+                        }
+                      },
+                      child: Text('Add Task'),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+          child: Icon(Icons.add),
+        ),
+      ),
+    );
+  }
+}
+</code></pre>
+        <h2>task.dart</h2>
+        <pre><code>
+class Task {
+  String title;
+  bool isCompleted;
+  String id;
+
+  Task({
+    required this.title,
+    this.isCompleted = false,
+    required this.id,
+  });
+}
+</code></pre>
+        <h2>task_list.dart</h2>
+        <pre><code>
+import 'package:flutter/foundation.dart';
+
+import 'task.dart';
+
+class TaskList extends ChangeNotifier {
+  List<Task> tasks = [];
+
+  void addTask(Task task) {
+    tasks.add(task);
+    notifyListeners();
+  }
+
+  void updateTask(String id, String title, bool isCompleted) {
+    final taskIndex = tasks.indexWhere((task) => task.id == id);
+    if (taskIndex >= 0) {
+      tasks[taskIndex] = Task(
+        title: title,
+        isCompleted: isCompleted,
+        id: id,
+      );
+      notifyListeners();
+    }
+  }
+
+  void deleteTask(String id) {
+    tasks.removeWhere((task) => task.id == id);
+    notifyListeners();
+  }
+
+  void toggleTaskStatus(String id) {
+    final taskIndex = tasks.indexWhere((task) => task.id == id);
+    if (taskIndex >= 0) {
+      tasks[taskIndex].isCompleted = !tasks[taskIndex].isCompleted;
+      notifyListeners();
+    }
+  }
+}
+</code></pre>
+        <div class="return-button">
+            <a href="flutter.html">Return to Flutter Projects</a>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>To-do-list Website Code</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+</head>
+
+<body class="is-preload">
+    <div id="main">
+        <h1>To-do-list Website Code</h1>
+        <p>Below is the code for the To-do-list Website project.</p>
+        <h2>index.html</h2>
+        <pre><code>
+            &lt;!DOCTYPE html&gt;
+            &lt;html lang="en"&gt;
+            
+            &lt;head&gt;
+                &lt;meta charset="UTF-8"&gt;
+                &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+                &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+                &lt;title&gt;Document&lt;/title&gt;
+                &lt;link rel="stylesheet" href="style.css"&gt;
+                &lt;script src="https://kit.fontawesome.com/d5f22ee4f8.js" crossorigin="anonymous"&gt;&lt;/script&gt;
+            &lt;/head&gt;
+            
+            &lt;body&gt;
+                &lt;div class="main-container"&gt;
+                    &lt;div class="ta-container"&gt;
+                        &lt;div class="heading"&gt;
+                            &lt;h1&gt;To-do List&lt;/h1&gt;
+                        &lt;/div&gt;
+                        &lt;div class="ta-wrapper"&gt;
+                            &lt;div class="input-wrapper"&gt;
+                                &lt;input type="text" id="todo-input"&gt;
+                                &lt;button id="submit"&gt;Add&lt;/button&gt;
+                            &lt;/div&gt;
+                            &lt;div class="todo-lists"&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/body&gt;
+            
+            &lt;script src="script.js"&gt;&lt;/script&gt;
+            
+            &lt;/html&gt;
+        </code></pre>
+        <h2>style.css</h2>
+        <pre><code>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap');
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Poppins', sans-serif;
+            }
+            
+            body {
+                background: skyblue;
+            }
+            
+            .main-container {
+                display: flex;
+                width: 100vw;
+                height: 100vh;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+            }
+            
+            .ta-wrapper {
+                background: #3c424a;
+                color: white;
+                padding: 20px;
+                border-radius: 4px;
+                box-shadow: 0 0 7px 7px rgb(0 0 0 / 20%);
+                min-height: 300px;
+            }
+            
+            .heading h1 {
+                text-align: center;
+                color: white;
+                font-size: 40px;
+                margin-bottom: 10px;
+            }
+            
+            .input-wrapper {
+                margin-bottom: 20px;
+            }
+            
+            .input-wrapper input {
+                outline: none;
+                border: 0;
+                background: rgba(0, 0, 0, 0.3);
+                padding: 10px;
+                color: white;
+                width: 500px;
+            }
+            
+            .input-wrapper button {
+                background: #f10505;
+                color: white;
+                border: 0;
+                padding: 10px;
+                font-weight: bold;
+                border-radius: 2px;
+                cursor: pointer;
+            }
+            
+            .todo-item {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 10px;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+                padding-bottom: 10px;
+            }
+            
+            .todo-item input {
+                background: transparent;
+                border: navajowhite;
+                color: white;
+                outline: none;
+            }
+            
+            .todo-item i {
+                color: #f2700c;
+                background: transparent;
+                border: 1px solid;
+                border-radius: 50%;
+                padding: 6px;
+                cursor: pointer;
+                transition: 0.2s ease-in-out;
+                margin-left: 5px;
+            }
+            
+            .todo-item button:hover {
+                color: white;
+            }
+            
+            .done {
+                text-decoration: line-through;
+            }
+            
+            .fa-x {
+                padding: 6px 8px !important;
+            }
+        </code></pre>
+        <h2>script.js</h2>
+        <pre><code>
+            // access input field
+const input = document.querySelector('#todo-input');
+
+// Listening to click event from "Add" button.
+document.querySelector('#submit').addEventListener('click', () => {
+    // value of the input field
+    const inputData = input.value;
+    input.value = "";
+
+    // creating todo item element
+    const todo_el = document.createElement('div');
+    todo_el.classList.add('todo-item');
+
+    const todo_content_el = document.createElement('div');
+    todo_el.appendChild(todo_content_el);
+
+    const todo_input_el = document.createElement('input');
+    todo_input_el.classList.add('text');
+    todo_input_el.type = 'text';
+    todo_input_el.value = inputData;
+    todo_input_el.setAttribute('readonly', 'readonly');
+
+    todo_content_el.appendChild(todo_input_el);
+
+    const todo_actions_el = document.createElement('div');
+    todo_actions_el.classList.add('action-items');
+
+    const todo_done_el = document.createElement('i');
+    todo_done_el.classList.add('fa-solid');
+    todo_done_el.classList.add('fa-check');
+
+    const todo_edit_el = document.createElement('i');
+    todo_edit_el.classList.add('fa-solid');
+    todo_edit_el.classList.add('fa-pen-to-square');
+    todo_edit_el.classList.add('edit');
+
+    const todo_delete_el = document.createElement('i');
+    todo_delete_el.classList.add('fa-solid');
+    todo_delete_el.classList.add('fa-trash');
+
+    todo_actions_el.appendChild(todo_done_el)
+    todo_actions_el.appendChild(todo_edit_el);
+    todo_actions_el.appendChild(todo_delete_el);
+
+    todo_el.appendChild(todo_actions_el);
+    console.log(todo_el)
+    // add the todo-item to lists
+    document.querySelector('.todo-lists').appendChild(todo_el);
+
+    // done functionality
+    todo_done_el.addEventListener('click', () => {
+        todo_input_el.classList.add('done')
+        todo_el.removeChild(todo_actions_el);
+    })
+
+    // edit functionality
+    todo_edit_el.addEventListener('click', (e) => {
+        if (todo_edit_el.classList.contains("edit")) {
+            todo_edit_el.classList.remove("edit");
+            todo_edit_el.classList.remove("fa-pen-to-square");
+            todo_edit_el.classList.add("fa-x");
+            todo_edit_el.classList.add("save");
+            todo_input_el.removeAttribute("readonly");
+            todo_input_el.focus();
+        } else {
+            todo_edit_el.classList.remove("save");
+            todo_edit_el.classList.remove("fa-x");
+            todo_edit_el.classList.add("fa-pen-to-square");
+            todo_edit_el.classList.add("edit");
+            todo_input_el.setAttribute("readonly", "readonly");
+        }
+    });
+
+    // delete functionality
+    todo_delete_el.addEventListener('click', (e) => {
+        console.log(todo_el);
+        document.querySelector('.todo-lists').removeChild(todo_el);
+    });
+})
+        </code></pre>
+        <div class="return-button">
+            <a href="html.html">Return to HTML Projects</a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

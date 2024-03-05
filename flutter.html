@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Flutter Projects</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+    <style>
+        .small-image {
+            max-width: 200px;
+            max-height: 400px;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+    <script>
+        function scrollToTop() {
+            if ('scrollBehavior' in document.documentElement.style) {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            } else {
+                window.scrollTo(0, 0);
+            }
+        }
+
+        window.addEventListener('scroll', function () {
+            var topButton = document.querySelector('.button.scrolly');
+            if (window.pageYOffset > 200) {
+                topButton.style.display = 'block';
+            } else {
+                topButton.style.display = 'none';
+            }
+        });
+    </script>
+</head>
+
+<body class="is-preload">
+    <div id="main">
+        <h1>Flutter Projects</h1>
+        <p>This page showcases my projects developed using the Flutter framework.</p>
+
+        <section class="posts">
+            <!-- Existing project articles... -->
+
+            <article>
+                <header>
+                    <h2>Flutter ToDo-App</h2>
+                </header>
+                <a href="#" class="image fit"><img src="images/flutter to-do.jpg" alt="Image of Flutter-ToDo-App" class="small-image" /></a>
+                <p>
+                    Flutter-ToDo-App is a powerful and user-friendly mobile application developed using the Flutter
+                    framework in Android Studio. It is designed to help users efficiently manage their tasks and
+                    stay organized in their daily lives. The app allows users to create, edit, and delete tasks
+                    effortlessly,
+                    making it a perfect companion for individuals, students, professionals, and anyone seeking to
+                    enhance their productivity.
+                </p>
+                <ul class="actions special">
+                    <li><a href="flutter_todo_app_code.html" class="button">Code</a></li>
+                </ul>
+            </article>
+            <article>
+                <header>
+                    <h2>Flutter Tic-Tac-Toe</h2>
+                </header>
+                <a href="#" class="image fit"><img src="images/flutter tic-tac.jpg" alt="Image of Flutter-Tic-Tac-Toe" class="small-image" /></a>
+                <p>Flutter-Tic-Tac-Toe is an engaging and interactive mobile application developed using the Flutter
+                    framework in Android Studio. With its visually appealing and user-friendly interface, the app
+                    creates a seamless gaming experience. The app combines smooth animations, vibrant colors, and
+                    controls to ensure players are fully immersed in the gameplay.
+                </p>
+                <ul class="actions special">
+                    <li><a href="flutter_tic_tac_toe_code.html" class="button">Code</a></li>
+                </ul>
+            </article>
+
+            <!-- New project articles -->
+            <article>
+                <header>
+                    <h2>Flutter BMI-Calculator</h2>
+                </header>
+                <a href="#" class="image fit"><img src="images/flutter BMI-Calculator.jpg" alt="Image of Flutter-BMI-Calculator" class="small-image" /></a>
+                <p>BMI Calculator is a user-friendly and intuitive mobile application built using Flutter and Android Studio that helps users monitor their Body Mass Index (BMI).
+                    This simple yet powerful tool allows users to calculate their BMI by entering their height and weight.
+                </p>
+                <ul class="actions special">
+                    <li><a href="flutter_bmi_calculator_code.html" class="button">Code</a></li>
+                </ul>
+            </article>
+            <article>
+                <header>
+                    <h2>Flutter Random-Name Generator</h2>
+                </header>
+                <a href="#" class="image fit"><img src="images/flutter Random-Name-Generator.jpg" alt="Image of Flutter-Random-Name-Generator" class="small-image" /></a>
+                <p>Random Name Generator is an engaging and user-friendly mobile app built using Flutter and Android Studio.
+                    It serves as a fun and practical tool for generating random names for various purposes, such as character names for games, usernames, or simply for inspiration.
+                </p>
+                <ul class="actions special">
+                    <li><a href="flutter_random_name_generator_code.html" class="button">Code</a></li>
+                </ul>
+            </article>
+        </section>
+        <div class="return-button">
+            <a href="index.html">Return to Home</a>
+        </div>
+        <a href="#" class="button icon solid solo fa-arrow-up scrolly bottom-right" onclick="scrollToTop(); return false;" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; background-color: grey; color: #fff; padding: 10px; border-radius: 50%; display: none;">Top</a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

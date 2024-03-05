@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Python Random-Facts Generator Code</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+</head>
+
+<body class="is-preload">
+    <div id="main">
+        <h1>Python Random-Facts Generator Code</h1>
+        <p>Below is the code for the Python Random-Facts Generator project here.</p>
+        <p><strong>Note:</strong> Before running the code, make sure to install the required libraries by executing the
+            following commands in your command prompt (CMD) or PowerShell:</p>
+        <pre><code>
+        pip install tkinter
+        pip install randfacts
+        </code></pre>
+        <h2>fact.py</h2>
+        <pre><code>
+            import tkinter as tk
+            from tkinter import *
+            import randfacts
+            
+            
+            # Function to add facts
+            def move(event=None):
+                if event:
+                    print(f"Event type: {event.type}")
+                facts = randfacts.get_fact(True)
+                c = f"{len(text_area.get('1.0', 'end').splitlines())}) "  # Get the current line count
+                text_area.insert(tk.END, c + facts + "\n")
+                text_area.see(tk.END)  # Scroll to the bottom after adding a new fact
+            
+            
+            # Function to clear the text area
+            def clear():
+                text_area.delete('1.0', tk.END)
+            
+            
+            # Function to close the window
+            def destroy():
+                root.destroy()
+            
+            
+            # Driver code
+            root = tk.Tk()
+            root.geometry("1200x400")
+            
+            # Add space between the top and the "Get Fact" button
+            tk.Label(root).pack(pady=10)
+            
+            # Create a scrollable text area
+            scrollbar = tk.Scrollbar(root)
+            scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+            
+            text_area = tk.Text(root, yscrollcommand=scrollbar.set)
+            text_area.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+            
+            scrollbar.config(command=text_area.yview)
+            
+            # Add buttons
+            button = tk.Button(root, text="Click here for Facts", command=move)
+            button.pack()
+            
+            button_frame = tk.Frame(root)
+            button_frame.pack()
+            
+            button_clear = tk.Button(button_frame, text="Clear", command=clear)
+            button_clear.pack(pady=5)
+            
+            button_quit = tk.Button(button_frame, text="Quit", command=destroy)
+            button_quit.pack(pady=5)
+            
+            root.mainloop()
+            
+        </code></pre>
+        <div class="return-button">
+            <a href="python.html">Return to Python Projects</a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

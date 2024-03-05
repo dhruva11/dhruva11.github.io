@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Python Digital-Clock Code</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+</head>
+
+<body class="is-preload">
+    <div id="main">
+        <h1>Python Digital-Clock Code</h1>
+        <p>Below is the code for the Python Digital-Clock project.</p>
+        <p><strong>Note:</strong> Before running the code, make sure to install the required libraries by executing the
+            following commands in your command prompt (CMD) or PowerShell:</p>
+        <pre><code>
+        pip install tkinter
+        pip install ttkthemes
+        </code></pre>
+        <h2>Digital_Clock.py</h2>
+        <pre><code>
+            from tkinter import *
+            from tkinter.ttk import *
+            from time import strftime
+            
+            root = Tk()
+            root.title('Clock')
+            
+            
+            def time():
+                string = strftime('%I:%M:%S %p')
+                # To make the clock format 24 hrs. Simply change the strftime('%I:%M:%S %p') to strftime('%H:%M:%S %p').
+                lbl.config(text=string)
+                lbl.after(1000, time)  # It will update the time after every (1000 milliseconds i.e. after 1 second)
+            
+            
+            lbl = Label(root, font=('calibri', 40, 'bold'), background='purple', foreground='white')
+            
+            lbl.pack(anchor='center')
+            time()
+            
+            mainloop()
+            
+        </code></pre>
+        <div class="return-button">
+            <a href="python.html">Return to Python Projects</a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
